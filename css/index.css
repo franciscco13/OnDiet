@@ -1,0 +1,101 @@
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  padding: 50px 10%;
+  margin: 0 auto;
+  position: relative; }
+  @media screen and (max-width: 992px) {
+    .card-wrapper {
+      padding: 30px 5%; } }
+  @media screen and (max-width: 450px) {
+    .card-wrapper {
+      padding: 30px 0; } }
+  .card-wrapper .card {
+    margin: 5px;
+    width: calc(33.3333% - 10px); }
+    @media screen and (max-width: 992px) {
+      .card-wrapper .card {
+        width: calc(33.3333% - 10px); } }
+    @media screen and (max-width: 850px) {
+      .card-wrapper .card {
+        width: calc(50% - 10px); } }
+    @media screen and (max-width: 600px) {
+      .card-wrapper .card {
+        width: calc(100% - 10px); } }
+    .card-wrapper .card .card-content {
+      position: relative; }
+      .card-wrapper .card .card-content i {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 1; }
+    .card-wrapper .card .image {
+      width: 100%;
+      height: 250px;
+      background-color: #ddd; }
+  .card-wrapper .chip {
+    margin-top: 5px;
+    background-color: transparent; }
+    .card-wrapper .chip .img-profile {
+      float: left;
+      margin: 0 8px 0 -12px;
+      width: 32px !important;
+      height: 32px !important;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.15);
+      color: #333; }
+      .card-wrapper .chip .img-profile:before {
+        content: attr(letter);
+        width: 32px;
+        text-align: center;
+        display: inline-block;
+        position: relative;
+        z-index: 0; }
+
+body {
+  background-color: #f2f2f2; }
+
+::-webkit-scrollbar {
+  width: 5px;
+  padding: 3px;
+  background-color: transparent; }
+
+::-webkit-scrollbar-track {
+  background-color: transparent; }
+
+::-webkit-scrollbar-thumb {
+  margin: 3px;
+  background-color: rgba(0, 0, 0, 0.5); }
+
+.nav-wrapper {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center; }
+  .nav-wrapper .logo {
+    height: 30px;
+    margin-bottom: 20px; }
+    .nav-wrapper .logo object {
+      height: 100%; }
+
+nav {
+  z-index: 1000 !important;
+  position: fixed;
+  top: 0;
+  left: 0; }
+  nav .nav-wrapper {
+    z-index: 1;
+    position: relative; }
+
+/*# sourceMappingURL=index.css.map */

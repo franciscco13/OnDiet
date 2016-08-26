@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta charset="utf-8">
+    <title>OnDiet</title>
+    <script src="libraries/jquery.min.js"></script>
+    <script src="libraries/angular.js"></script>
+    <script src="libraries/angular-sanitize.min.js"></script> 
+    <script src="js/bin/materialize.min.js"></script>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/materialize.css" />
+    <link rel="stylesheet" href="css/rating.css" />
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+<body ng-controller = "controller-mainpage">
+	<div class="navbar-fixed">
+		<nav class ="z-depth-2">
+		    <div class="nav-wrapper deep-orange darken-4"> 
+		      	<div class="logo"><object data="img/system/logo_horizontal_whitetext.svg" type="image/svg+xml">Logo</object></div>
+		    </div>  
+		</nav> 
+	</div>
+	<div class="card-wrapper">
+		<div class="card"  ng-repeat = "x in array">
+		    <div class="card-image">
+		      	<div class="image activator waves-block waves-effect waves-light" back-img="img/diets/{{x}}/preview.jpg"></div>
+		    </div>
+		    <div class="card-content">
+		      	<span class="card-title activator grey-text text-darken-4">
+		      		Card Title
+		      		<i class="material-icons right">more_vert</i>			      		
+		      	</span> 
+		      	<div class="chip">
+					<div back-img="" class="img-profile" letter = "J"></div>
+				    Jane Doe
+				</div>
+				<!-- <div ng-include="'rating.php'"></div> -->
+		    </div>
+		    <div class="card-reveal">
+		      	<span class="card-title grey-text text-darken-4">Card Title
+		      	<i class="material-icons right">close</i></span>
+		      	<p>Here is some more information about this product that is only revealed once clicked on.</p>
+		    </div>
+		</div>
+	</div>  
+
+	<script>
+    	var app = angular.module("myApp", ['ngSanitize']); 
+    	app.controller("controller-mainpage", function($scope){
+    		$scope.array = [1,2,3,4,5,6];
+    	});
+    </script>    
+    <script src="js/directives/backImg.js"></script>
+    <script src="js/directives/fileModel.js"></script>
+</body>
+</html>

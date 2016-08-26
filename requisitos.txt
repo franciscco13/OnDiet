@@ -1,0 +1,120 @@
+#########################################################################
+
+# 1.  Crear un archivo PHP el cual pueda recibir el parametro $_GET['idNutriologo'] y:
+
+	a) Si detecta que existe el parametro, imprimir mediante print_r() la lista completa de dietas creadas por el nutriologo
+	con dicho id en forma de array. Ejemplo:
+
+			dietas = array(
+				1 => array( 
+					"name" 			=> "Dietname",
+					"description" 	=> "Description",			
+					"nutriologo"	=> array(
+						"id"		=> 	idNutriologo,
+						"name"		=>  NutriologoName
+					),
+					"valoracion"	=> 4.5,
+					"alimentos"		=> array(
+						"id" 		=> alimentoId,
+						"name"		=> "Pera"
+					),
+				),
+				2 => array( 
+					"name" 			=> "Dietname",
+					"description" 	=> "Description",			
+					"nutriologo"	=> array(
+						"id"		=> 	idNutriologo,
+						"name"		=>  NutriologoName
+					),
+					"valoracion"	=> 5,
+					"alimentos"		=> array(
+						"id" 		=> alimentoId,
+						"name"		=> "Manzana"
+					),
+				),
+			); 
+			print_r(dietas);
+
+	b) En caso de no existir el parametro, simplemente imprimir mediante print_r() la lista completa de dietas creadas (de todos los nutriologos).
+
+	# --------------------------------------------------------------------------------------------------------------------------------
+	# NOTAS 
+
+	# El campo nutriologo.name está conformado por la concatenacion de los campos name, apPaterno y apMaterno del nutriologo que generó la dieta
+
+	# El campo valoracion está conformado por el promedio de las valoraciones hechas para la dieta correspondiente, las cuales se encuentran en la tabla  DietasValoracion
+
+	# --------------------------------------------------------------------------------------------------------------------------------
+
+######################################################################### 
+
+# 2.  Crear un archivo PHP el cual simplemente imprimima mediante print_r() la lista completa de alimentos en la tabla Alimento
+	  en formato de array, ejemplo:
+
+	  alimentos = array(
+	  		Alimento.idAlimento => 'Alimento.name',
+	  )
+
+	  print_r(alimentos);
+
+	  ALimento.name
+	  Alimento.id
+
+	  var $array = [];
+	  for(int $i= 0; $i<alimento.id.length; $i++){
+	  	$array[alimento.id[i]] => $alimento.name[i];
+	  }
+
+	  print_r($array);
+
+
+######################################################################### 
+
+# 3.  Crear un archivo PHP en el cual:
+	
+	a) Se reciba mediante el método POST el siguiente arreglo:	
+	
+		Array
+		(
+		    [name] => Cítricos
+		    [description] => Esta es una breve descripción.<br/>Aqui tu especificarás como preparar tu dieta
+		    [food] => [
+		    	{
+		    		"id":"1",
+		    		"name":"Limón"
+		    	},
+		    	{
+		    		"name":"cereza"
+		    	}
+		    ]
+		) 
+
+	b) Además se recibirá una imagen que estará almacenada en $_FILES['dietImg'] 
+	c) Almacenar la imagen anterior en la carpeta '/img/diets/{{id de la dieta}}/' con el nombre de preview.jpg
+	d) Insertar en la tabla Dietas la nueva dieta tomando en consideración los siguientes campos:
+
+		Dietas.name 					--> 'Citricos'
+		Dietas.descripcion 				--> 'Esta es una breve descripción.<br/>Aqui tu especificarás como preparar tu dieta'
+		Dietas.Nutriologo_idNutriologo	--> $_SESSION['perfil']['id']
+
+			Almacenar en una variable ($currentDietId) el id de la dieta reada mediante mysqli_insert_id.
+
+	e) Insertar en la tabla Alimento los valores del arreglo [food] que no contienen un id (en este caso 'cereza'), tomando en consideracion
+	   los siguientes campos:
+
+	   	Alimento.name 	--> 'cereza'
+
+	   		Almacenar en un arreglo ($currentFoodId) todos los ids de los alimentos recien insertado mediante mysqli_insert_id.
+
+	f)  Insertar en la tabla Dietas_has_alimento los id obtenidos ($currentDietId, $currentFoodId) de la siguiente manera
+
+		foreach($currentFoodId as $key => $foodId){
+			INSERT ..... 
+				Dietas_has_alimento.Dietas_idDietas 	--> $currentDietId
+				Dietas_has_alimento.Alimento_idAlimento	--> $foodId
+		}
+
+
+######################################################################### 
+
+# 4.  Crear un archivo PHP en el cual se borrarán los datos de sesion ( $_SESSION['perfil'] );

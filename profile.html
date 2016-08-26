@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta charset="utf-8">
+    <title>OnDiet | Perfil</title>
+    <script src="libraries/jquery.min.js"></script>
+    <script src="libraries/angular.js"></script>
+    <script src="libraries/angular-sanitize.min.js"></script> 
+    <script src="js/bin/materialize.min.js"></script>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/materialize.css" /> 
+    <link rel="stylesheet" href="css/profile.css" />
+</head>
+<body ng-controller = "controller-profile">
+	<div class="navbar-fixed">
+		<nav class ="z-depth-0 deep-orange darken-4">
+		    <div class="nav-wrapper"> 
+		      	<div class="logo">
+		      		<object data="img/system/logo_horizontal_whitetext.svg" type="image/svg+xml">Logo</object>
+		      	</div> 
+		      	<div class="profile-btn">
+		      		<div class="img" back-img="img/profile/{{profile.id}}/preview.jpg" letter = "{{profile.name[0]}}"></div>
+		      		<div class="name">{{profile.name}} {{profile.ap}}</div>
+		      	</div>
+		    </div> 
+		</nav>
+    </div>
+    
+    <div class="header deep-orange darken-4">
+    	<div class="profile-img" back-img="img/profile/{{profile.id}}/preview.jpg" letter = "{{profile.name[0]}}"></div>
+		<div class="profile-name"> {{profile.fullname}}</div>
+		 <a class="btn-floating btn-large waves-effect waves amber darken-1 z-depth-4" ng-click="newDiet()"><i class="material-icons">add</i></a>
+    </div>
+
+    <div class="card-wrapper">
+		<div class="card"  ng-repeat = "x in array">
+		    <div class="card-image">
+		      	<div class="image activator waves-block waves-effect waves-light" back-img="img/diets/{{x}}/preview.jpg">
+		      	</div>
+		    </div>
+		    <div class="card-content">
+		      	<span class="card-title activator grey-text text-darken-4">
+		      		Card Title
+		      		<i class="material-icons right">more_vert</i>			      		
+		      	</span> 
+		      	<div class="chip">
+					<div back-img="img/profile/{{profile.id}}/preview.jpg" class="img-profile" letter = "{{profile.name[0]}}"></div>
+				    {{profile.name}} {{profile.ap}}
+				</div>
+				<!-- <div ng-include="'rating.php'"></div> -->
+		    </div>
+		    <div class="card-reveal">
+		      	<span class="card-title grey-text text-darken-4">Card Title
+		      	<i class="material-icons right">close</i></span>
+		      	<p>Here is some more information about this product that is only revealed once clicked on.</p>
+		    </div>
+		</div>
+	</div>   
+
+
+	<div class="new-diet" ng-click="closeDiet($event)">
+		<div class="new-diet-container z-depth-4">
+			<i class="material-icons close-btn" ng-click="closeDiet($event)">close</i>
+			<form action="POST" enctype="multipart/form-data" id = "form-diet">
+				<h5>Nueva Dieta</h5> 
+				<div class="input-field">
+					<input type="text" id="diet-name" length="45" class="validate" id="diet-name">
+					<label for="diet-name">Nombre de la dieta</label>
+				</div>
+				<div class="input-field">
+		            <textarea id="diet-description" class="materialize-textarea validate" length="1000" id="diet-description"></textarea>
+		            <label for="diet-description">Descripción</label>
+		        </div>
+				<br>
+				<div class="chips chips-placeholder"></div>
+				<div class="file-field input-field">
+				    <div class="btn">
+				        <span>Imagen</span>
+				        <input type="file" name="dietImg"/> 
+				    </div>
+			    	<div class="file-path-wrapper">
+			       		<input class="file-path" type="text" placeholder="Carga una imagen de la dieta">
+			  		</div>
+				</div>
+				<a class="btn-floating btn-large waves-effect waves amber darken-1 z-depth-4" id="postDietBtn">
+					<i class="material-icons">check</i>
+				</a>
+		    </form>
+		</div>
+	</div> 
+
+
+    <script>
+	var app = angular.module("myApp", ['ngSanitize']); 
+	app.controller("controller-profile", function($scope, $http){
+		
+		$scope.array = [1,2,3,4,5,6];
+
+		$scope.newDiet = function(){
+			$(".new-diet").addClass("show-panel");
+			$('body').addClass("stop-scrolling"); 
+		};
+		$scope.closeDiet = function($event){
+			var target = $($event.target);
+			if(target.hasClass("new-diet") || target.hasClass("close-btn")){
+				$(".new-diet").removeClass("show-panel");
+				$('body').removeClass("stop-scrolling"); 
+			}
+		};  
+
+		$http.get('controlador/session_data.php').then(function(response){
+			console.log(response.data);
+			$scope.profile = {};
+			$scope.profile.id 		= response.data.id;
+			$scope.profile.email 	= response.data.email;
+			$scope.profile.title 	= response.data.tel;
+			$scope.profile.name 	= response.data.name;
+			$scope.profile.ap 		= response.data.ap;
+			$scope.profile.am   	= response.data.am;
+			$scope.profile.fullname	= $scope.profile.name +" "+$scope.profile.ap+" "+$scope.profile.am; 
+		});
+			
+	}); 
+    </script>
+     <script src="js/directives/backImg.js"></script>
+     <script src="js/functions/diet.js"></script> 
+</body>
+</html>
