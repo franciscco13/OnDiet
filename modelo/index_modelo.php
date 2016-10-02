@@ -4,21 +4,16 @@ include ("../dao/Connection_bd.php");
 
 class  index_modelo{
     /* Member variables */
-    var $id;
     var $email;
     var $pass;
     var $name;
     var $ap;
     var $am;
-    var $tel; 
+    var $tel;
+  
+	
 	
     /* Member functions */
-
-    function setEmail($id){
-      $this->id = $id;
-    }
-
-
     function setEmail($Email){
        $this->email = $Email;
     }

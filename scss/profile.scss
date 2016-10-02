@@ -1,5 +1,8 @@
 @import 'cardwrapper';
 
+body{
+	background-color: #eee;
+}
 .stop-scrolling{
 	overflow: hidden;
 	height: 100%;
@@ -40,6 +43,7 @@ nav{
 	.profile-btn{
 		width: auto;
 		color: white;
+		
 		display: -webkit-flex;
 		display: -ms-flexbox;
 		display: flex;
@@ -122,7 +126,7 @@ nav{
 	margin-top: 240px;
 }
 
-.new-diet{
+.new-diet, .edit-diet{
 	width: 100%;
 	height: 100%;
 	background-color: rgba(#111,0.3);

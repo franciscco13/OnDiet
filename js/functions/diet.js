@@ -28,7 +28,7 @@ $(function(){
 
 		// peticion ajax
 	    $.ajax({
-		  	url: 'serverTest.php', 
+		  	url: 'controlador/newDiet', 
 		  	type: 'POST', 
 		  	data: dietInfo,	
 		  	cache: false,
@@ -36,34 +36,31 @@ $(function(){
 		  	contentType: false     
 		}).done(function(data){
 		  	console.log(data);
+		  	$(".close-btn").click();
+		  	location.reload();
 		}).fail(function(){
 		  	console.log("An error occurred, the files couldn't be sent!");
 		});
 	});
 
+	var chip_var;
 
-	var chip_var = [{
-	    tag: 'Limón',
-	    image: true,
-	    id: 1
-	},
-	{
-	    tag: 'Naranja',
-	    image: true, 
-	    id: 2 
-	}];
+	$.post("controlador/food_data", function(response){ 
+		chip_var = $.parseJSON(response); 
+	});
 
+	
 	$('.chips-placeholder').material_chip({
 	   placeholder: '+ingrediente',
-	   secondaryPlaceholder: 'Etiquetas', 
+	   secondaryPlaceholder: 'Ingredientes', 
 	}); 
 
-	$('.chips').on('chip.add', function(e, chip){ 	
+	$('.chips').on('chip.add', function(e, chip){ 	 
 		var obj = [];
 		obj = isAlready(chip.tag);	 
 		if(obj != undefined){ 
 			var img = (!obj.image) ? '' 
-				: '<div class=\'img\' style=\'background-image:url(img/food/'+obj.id+'/preview.jpg)\'></div>';
+				: '<div class=\'img\' style=\'background-image:url(img/food/'+obj.id+'.jpg)\'></div>';
 			$('.chips').find(".chip:contains("+chip.tag+")").remove();
 			$('.chips input').before(""+
 				"<div class = 'chip' food-id='"+obj.id+"'>"+

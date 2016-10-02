@@ -227,7 +227,7 @@ call alimento('Mandarina');
 call alimento('Mango');
 call alimento('Maíz');
 call alimento('Miel');
-call alimento('Mora');
+call alimento('Mora Azul');
 call alimento('Naranja');
 call alimento('Nuez');
 call alimento('Pan');

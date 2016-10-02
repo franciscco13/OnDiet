@@ -4,6 +4,15 @@ body{
 	background-color: #f2f2f2;   
 }
 
+
+.link-login{ 
+	position: fixed;
+	right: 20px;
+	top: 0;
+	display: block;
+}
+
+
 ::-webkit-scrollbar{
 	width: 5px;  
 	padding: 3px;

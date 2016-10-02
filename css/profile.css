@@ -13,6 +13,58 @@
   @media screen and (max-width: 450px) {
     .card-wrapper {
       padding: 30px 0; } }
+  .card-wrapper .edit-btn, .card-wrapper .delete-btn, .card-wrapper .buy-btn {
+    color: #888;
+    bottom: 25px;
+    position: absolute; }
+  .card-wrapper .delete-btn, .card-wrapper .buy-btn {
+    right: 25px; }
+    .card-wrapper .delete-btn:hover, .card-wrapper .buy-btn:hover {
+      color: #e53935; }
+  .card-wrapper .edit-btn {
+    right: 70px; }
+    .card-wrapper .edit-btn:hover {
+      color: #1e88e5; }
+  .card-wrapper .diet-rating {
+    float: right;
+    font-size: 20px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: #ffd54f; }
+  .card-wrapper .close-card {
+    position: absolute;
+    top: 10px;
+    right: 10px; }
+  .card-wrapper h1 {
+    font-size: 18px;
+    line-height: 18px;
+    margin: 0 0 20px 0;
+    text-transform: uppercase; }
+  .card-wrapper h2 {
+    font-size: 16px;
+    line-height: 16px;
+    margin: 40px 0 0 0 !important;
+    font-weight: 700;
+    color: #555; }
+  .card-wrapper ul {
+    display: flex;
+    flex-wrap: wrap; }
+  .card-wrapper li {
+    margin: 2px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    background-color: #eee;
+    border-radius: 50px;
+    min-width: 45%; }
+    .card-wrapper li div {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%; }
+    .card-wrapper li span {
+      padding: 0 20px 0 10px; }
   .card-wrapper .card {
     margin: 5px;
     width: calc(33.3333% - 10px); }
@@ -27,14 +79,14 @@
         width: calc(100% - 10px); } }
     .card-wrapper .card .card-content {
       position: relative; }
-      .card-wrapper .card .card-content i {
+      .card-wrapper .card .card-content .more-btn {
         position: absolute;
         right: 10px;
         top: 10px;
         z-index: 1; }
     .card-wrapper .card .image {
       width: 100%;
-      height: 250px;
+      height: 300px;
       background-color: #ddd; }
   .card-wrapper .chip {
     margin-top: 5px;
@@ -54,6 +106,27 @@
         display: inline-block;
         position: relative;
         z-index: 0; }
+
+.rating-container {
+  display: inline-flex;
+  margin-top: 20px; }
+  .rating-container .star {
+    width: 24px;
+    height: 24px;
+    margin: 0 !important;
+    cursor: pointer;
+    color: #bbb; }
+    .rating-container .star:hover ~ .star {
+      color: #bbb; }
+    .rating-container .star.is-selected {
+      color: #ffd54f; }
+      .rating-container .star.is-selected:hover {
+        color: #ffd54f; }
+  .rating-container:hover .star {
+    color: #ffc107; }
+
+body {
+  background-color: #eee; }
 
 .stop-scrolling {
   overflow: hidden;
@@ -158,7 +231,7 @@ nav {
 .card-wrapper {
   margin-top: 240px; }
 
-.new-diet {
+.new-diet, .edit-diet {
   width: 100%;
   height: 100%;
   background-color: rgba(17, 17, 17, 0.3);
