@@ -41,7 +41,7 @@
 		      	<span class="card-title activator grey-text text-darken-4">
 		      		{{x.name}}
 		      		<i class="material-icons right more-btn">more_vert</i>		
-		      		<span class="material-icons right buy-btn" ng-click="shopping(x.alimento)">shopping_cart</span>		      		 
+		      		<!--<span class="material-icons right buy-btn" ng-click="shopping(x.alimento)">shopping_cart</span>-->		      		 
 		      	</span> 
 		      	<div class="chip">
 					<div back-img="img/profile/{{profile.id}}/preview.jpg" class="img-profile" letter = "{{x.nutriologo.name[0]}}"></div>
